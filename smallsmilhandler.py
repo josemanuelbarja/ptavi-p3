@@ -6,7 +6,7 @@ from xml.sax.handler import ContentHandler
 
 class SmallSMILHandler(ContentHandler):
 
-    def __init__(self):
+    def __init__(self): #  'inicializo diccionarios y lista'
         self.root_layout = {'name': 'root_layout'}
         self.region = {'name': 'region'}
         self.image = {'name': 'image'}
@@ -14,7 +14,7 @@ class SmallSMILHandler(ContentHandler):
         self.textstream = {'name': 'textstream'}
         self.lista = []
 
-    def startElement(self, name, attrs):
+    def startElement(self, name, attrs):  #  'Guardo atributos y añado a lista ordenada'
         if name == 'root-layout':
             self.root_layout['width'] = attrs.get('width',"")
             self.root_layout['height'] = attrs.get('height',"")
@@ -43,7 +43,7 @@ class SmallSMILHandler(ContentHandler):
             self.textstream['region'] = attrs.get('region',"")
             self.lista.append(self.textstream)
 
-    def get_tags(self):
+    def get_tags(self):  #  'Me devuelve la lista completa'
         return self.lista
 
 if __name__ == "__main__":
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
     lista = cHandler.get_tags()
-    print(lista)
+    
