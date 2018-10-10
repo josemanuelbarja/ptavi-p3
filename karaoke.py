@@ -4,6 +4,7 @@
 import sys
 import smallsmilhandler
 from xml.sax import make_parser
+import json
 
 if __name__ == '__main__':
     parser = make_parser()
@@ -20,4 +21,7 @@ if __name__ == '__main__':
             if valor != '' and indice != 'name':
                 print(indice,'=', """ " """+valor+""" " """, end = '\t')
         print(end = '\n')
-    
+
+    smiltojson = sys.argv[1].replace('.smil','.json')
+    with open(smiltojson, 'w') as fichjson:
+        json.dump(lista, fichjson, indent=3)
