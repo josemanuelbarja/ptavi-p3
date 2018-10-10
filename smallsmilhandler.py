@@ -52,4 +52,3 @@ if __name__ == "__main__":
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
     lista = cHandler.get_tags()
-    
