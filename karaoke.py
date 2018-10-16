@@ -7,6 +7,7 @@ import urllib.request
 import smallsmilhandler
 from xml.sax import make_parser
 
+
 class KaraokeLocal:
 
     def __init__(self, file):
@@ -30,7 +31,7 @@ class KaraokeLocal:
 
     def to_json(self, file):
 
-        smiltojson = sys.argv[1].replace('.smil','.json')
+        smiltojson = sys.argv[1].replace('.smil', '.json')
         with open(smiltojson, 'w') as fichjson:
             json.dump(self.lista, fichjson, indent=4)
 
@@ -42,7 +43,7 @@ class KaraokeLocal:
                     if valor.startswith('http:'):
                         loc = valor.split('/')[-1]
                         urllib.request.urlretrieve(valor, loc)
-                        lineas['src'] = lineas['src'].replace(valor,loc)
+                        lineas['src'] = lineas['src'].replace(valor, loc)
 
 if __name__ == '__main__':
 
