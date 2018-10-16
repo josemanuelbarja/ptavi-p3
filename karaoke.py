@@ -28,7 +28,7 @@ class KaraokeLocal:
             pal_str += '\n'
         return pal_str
 
-    def to_json(self, filesmil):
+    def to_json(self, file):
 
         smiltojson = sys.argv[1].replace('.smil','.json')
         with open(smiltojson, 'w') as fichjson:
@@ -42,6 +42,7 @@ class KaraokeLocal:
                     if valor.startswith('http:'):
                         loc = valor.split('/')[-1]
                         urllib.request.urlretrieve(valor, loc)
+                        lineas['src'] = lineas['src'].replace(valor,loc)
 
 if __name__ == '__main__':
 
@@ -50,8 +51,8 @@ if __name__ == '__main__':
     except IndexError:
         sys.exit('Usage: python3 karaoke.py fichero.smil')
     karaoke = KaraokeLocal(file)
-    #print(karaoke)
+    print(karaoke)
     karaoke.to_json(file)
     karaoke.do_local()
     karaoke.to_json(file)
-    #print(karaoke)
+    print(karaoke)
